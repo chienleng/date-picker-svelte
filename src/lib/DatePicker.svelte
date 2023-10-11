@@ -33,6 +33,8 @@
   /** Default Date to use */
   const defaultDate = new Date()
 
+  /** List of unselectable dates */
+  export let unselectableDates: Date[] = []
   /** The earliest year the user can select */
   export let min = new Date(defaultDate.getFullYear() - 20, 0, 1)
   /** The latest year the user can select */
@@ -119,6 +121,16 @@
       setValue(browseDate)
       dispatch('select', cloneDate(browseDate))
     }
+  }
+  function dayIsUnselectable(calendarDay: CalendarDay, unselectableDates: Date[]) {
+    const date = new Date(calendarDay.year, calendarDay.month, calendarDay.number)
+    return unselectableDates.some((unselectableDate) => {
+      return (
+        date.getFullYear() === unselectableDate.getFullYear() &&
+        date.getMonth() === unselectableDate.getMonth() &&
+        date.getDate() === unselectableDate.getDate()
+      )
+    })
   }
   function dayIsInRange(calendarDay: CalendarDay, min: Date, max: Date) {
     const date = new Date(calendarDay.year, calendarDay.month, calendarDay.number)
@@ -303,6 +315,7 @@
             class="cell"
             on:click={() => selectDay(calendarDay)}
             class:disabled={!dayIsInRange(calendarDay, min, max)}
+            class:unselectable={dayIsUnselectable(calendarDay, unselectableDates)}
             class:selected={value &&
               calendarDay.year === value.getFullYear() &&
               calendarDay.month === value.getMonth() &&
@@ -445,6 +458,12 @@
     &.disabled
       visibility: hidden
     &.disabled:hover
+      border: none
+      background-color: transparent
+    &.unselectable
+      opacity: 0.4
+      pointer-events: none
+    &.unselectable:hover
       border: none
       background-color: transparent
     &.other-month span

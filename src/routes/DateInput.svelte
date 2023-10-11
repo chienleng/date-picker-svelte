@@ -14,6 +14,7 @@
   let browseWithoutSelecting: boolean
   let format: string
   let dynamicPositioning: boolean = true
+  let unselectableDates: Date[] = [new Date(2023, 9, 9), new Date(2023, 9, 8), new Date(2023, 9, 6)]
 </script>
 
 <Split>
@@ -30,6 +31,7 @@
     bind:closeOnSelection
     bind:browseWithoutSelecting
     bind:dynamicPositioning
+    bind:unselectableDates
   />
 
   <svelte:fragment slot="right">

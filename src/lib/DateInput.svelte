@@ -38,6 +38,8 @@
   export let value: Date | null = null
   $: store.set(value)
 
+  /** List of unselectable dates */
+  export let unselectableDates: Date[] = []
   /** The earliest value the user can select */
   export let min = new Date(defaultDate.getFullYear() - 20, 0, 1)
   /** The latest value the user can select */
@@ -222,6 +224,7 @@
         {max}
         {locale}
         {browseWithoutSelecting}
+        {unselectableDates}
       />
     </div>
   {/if}
