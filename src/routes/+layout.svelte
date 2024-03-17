@@ -89,7 +89,9 @@
     --input-highlight-border: rgb(2, 105, 247)
     --input-highlight-shadow: rgba(2, 105, 247, 0.5)
     --input-width: 150px
+    --input-size: 12px
     --date-input-width: var(--input-width)
+    --date-input-size: var(--input-size)
     color: var(--foreground)
     transition: background 80ms cubic-bezier(0.4, 0.0, 0.2, 1)
   :global([data-theme='dark'])

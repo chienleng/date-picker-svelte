@@ -236,6 +236,7 @@
   input
     color: var(--date-picker-foreground, #000000)
     background: var(--date-picker-background, #ffffff)
+    font-size: var(--date-input-size)
     min-width: 0px
     box-sizing: border-box
     padding: 4px 6px
